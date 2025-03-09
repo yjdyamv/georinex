@@ -1,4 +1,4 @@
-from __future__ import annotations
+from collections.abc import Hashable
 import pandas
 import io
 import xarray
@@ -26,7 +26,7 @@ def get_locations(files: list[Path]) -> pandas.DataFrame:
     else:
         raise TypeError("Expecting pathlib.Path")
 
-    hdr: dict[T.Hashable, T.Any]
+    hdr: dict[Hashable, T.Any]
     for file in files:
         if isinstance(file, Path) and file.suffix == ".nc":
             dat = xarray.open_dataset(file, group="OBS")

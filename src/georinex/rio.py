@@ -1,4 +1,4 @@
-from __future__ import annotations
+from collections.abc import Iterator, Hashable
 import typing as T
 import gzip
 import bz2
@@ -24,7 +24,7 @@ except ImportError:
 
 
 @contextmanager
-def opener(fn: T.TextIO | Path, header: bool = False) -> T.Iterator[T.TextIO]:
+def opener(fn: T.TextIO | Path, header: bool = False) -> Iterator[T.TextIO]:
     """provides file handle for regular ASCII or gzip files transparently"""
 
     if isinstance(fn, str):
@@ -138,14 +138,14 @@ def first_nonblank_line(f: T.TextIO, max_lines: int = 10) -> str:
     return line
 
 
-def rinexinfo(f: T.TextIO | Path) -> dict[T.Hashable, T.Any]:
+def rinexinfo(f: T.TextIO | Path) -> dict[Hashable, T.Any]:
     """verify RINEX version"""
 
     if isinstance(f, (str, Path)):
         fn = Path(f).expanduser()
 
         if fn.suffix == ".nc":
-            attrs: dict[T.Hashable, T.Any] = {"rinextype": []}
+            attrs: dict[Hashable, T.Any] = {"rinextype": []}
             for g in ("OBS", "NAV"):
                 try:
                     dat = xarray.open_dataset(fn, group=g)
@@ -188,7 +188,7 @@ def rinexinfo(f: T.TextIO | Path) -> dict[T.Hashable, T.Any]:
         else:
             rinex_type = line[20]
 
-        info: dict[T.Hashable, T.Any] = {
+        info: dict[Hashable, T.Any] = {
             "version": version,
             "filetype": file_type,
             "rinextype": rinex_type,

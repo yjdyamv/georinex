@@ -3,8 +3,8 @@ SP3 format:
     https://kb.igs.org/hc/en-us/articles/201096516-IGS-Formats
 """
 
-from __future__ import annotations
 import typing as T
+from collections.abc import Hashable
 import xarray
 import numpy as np
 import logging
@@ -27,7 +27,7 @@ def load_sp3(fn: Path, outfn: Path | None) -> xarray.Dataset:
     http://epncb.oma.be/ftp/data/format/sp3_docu.txt  (sp3a)
     """
 
-    dat: dict[T.Hashable, T.Any] = {}
+    dat: dict[Hashable, T.Any] = {}
 
     with opener(fn) as f:
         ln = first_nonblank_line(f)

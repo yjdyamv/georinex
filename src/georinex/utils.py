@@ -1,5 +1,5 @@
-from __future__ import annotations
 import typing as T
+from collections.abc import Hashable
 from pathlib import Path
 from datetime import datetime
 from dateutil.parser import parse
@@ -75,7 +75,7 @@ def gettime(fn: T.TextIO | Path):
     return times
 
 
-def rinexheader(fn: T.TextIO | Path) -> dict[T.Hashable, T.Any]:
+def rinexheader(fn: T.TextIO | Path) -> dict[Hashable, T.Any]:
     """
     retrieve RINEX 2/3 or CRINEX 1/3 header as unparsed dict()
     """
@@ -96,7 +96,7 @@ def rinexheader(fn: T.TextIO | Path) -> dict[T.Hashable, T.Any]:
 
     info = rinexinfo(fn)
 
-    hdr: dict[T.Hashable, T.Any]
+    hdr: dict[Hashable, T.Any]
     if int(info["version"]) in {1, 2}:
         if info["rinextype"] == "obs":
             hdr = obsheader2(fn)

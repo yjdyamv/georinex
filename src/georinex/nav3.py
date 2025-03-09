@@ -1,5 +1,5 @@
-from __future__ import annotations
 import typing as T
+from collections.abc import Hashable
 from pathlib import Path
 import xarray
 import logging
@@ -473,7 +473,7 @@ def _fields(ln: str, sv_sys: str) -> list[str]:
     return fields
 
 
-def navheader3(f: T.TextIO) -> dict[T.Hashable, T.Any]:
+def navheader3(f: T.TextIO) -> dict[Hashable, T.Any]:
     if isinstance(f, (str, Path)):
         with opener(f, header=True) as h:
             return navheader3(h)

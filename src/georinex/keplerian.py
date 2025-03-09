@@ -3,7 +3,6 @@ GPS Keplerian elements => ECEF
 Michael Hirsch, Ph.D.
 """
 
-from __future__ import annotations
 from datetime import datetime, timedelta
 import xarray
 import numpy as np

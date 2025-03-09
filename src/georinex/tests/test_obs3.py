@@ -202,7 +202,9 @@ def tests_all_indicators():
     assert obs.equals(truth)
 
 
-@pytest.mark.parametrize("fn, tname", [("obs3.01gage.10o", "GPS"), ("default_time_system3.10o", "GAL")])
+@pytest.mark.parametrize(
+    "fn, tname", [("obs3.01gage.10o", "GPS"), ("default_time_system3.10o", "GAL")]
+)
 def test_time_system(fn, tname):
     obs = gr.load(ir.files(f"{__package__}.data") / fn)
     assert obs.attrs["time_system"] == tname

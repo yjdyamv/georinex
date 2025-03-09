@@ -1,5 +1,5 @@
-from __future__ import annotations
 import typing as T
+from collections.abc import Hashable
 from pathlib import Path
 from datetime import datetime
 import xarray
@@ -211,7 +211,7 @@ def rinexnav2(fn: T.TextIO | Path, tlim: tuple[datetime, datetime] | None = None
     return nav
 
 
-def navheader2(f: T.TextIO) -> dict[T.Hashable, T.Any]:
+def navheader2(f: T.TextIO) -> dict[Hashable, T.Any]:
     """
     For RINEX NAV version 2 only. End users should use rinexheader()
     """

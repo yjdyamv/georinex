@@ -1,5 +1,5 @@
-from __future__ import annotations
 import typing as T
+from collections.abc import Hashable
 from pathlib import Path
 import numpy as np
 import logging
@@ -40,7 +40,7 @@ def rinexobs2(
     obs = xarray.Dataset(
         {}, coords={"time": np.array([], dtype="datetime64[ns]"), "sv": np.array([], dtype="<U3")}
     )
-    attrs: dict[T.Hashable, T.Any] = {}
+    attrs: dict[Hashable, T.Any] = {}
     for u in use:
         o = rinexsystem2(
             fn,
@@ -352,7 +352,7 @@ def _num_times(
 
 def obsheader2(
     f: T.TextIO | Path, useindicators: bool = False, meas: list[str] | None = None
-) -> dict[T.Hashable, T.Any]:
+) -> dict[Hashable, T.Any]:
     """
     End users should use rinexheader()
     """

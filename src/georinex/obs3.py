@@ -1,4 +1,4 @@
-from __future__ import annotations
+from collections.abc import Hashable
 from pathlib import Path
 import numpy as np
 import logging
@@ -209,7 +209,7 @@ def obstime3(fn: T.TextIO | Path, verbose: bool = False):
 def _epoch(
     data: xarray.Dataset,
     raw: str,
-    hdr: dict[T.Hashable, T.Any],
+    hdr: dict[Hashable, T.Any],
     time: datetime,
     sv: list[str],
     useindicators: bool,
@@ -270,7 +270,7 @@ def _indicators(d: dict, k: str, arr: np.ndarray) -> dict[str, tuple]:
 
 def obsheader3(
     f: T.TextIO, use: set[str] | None = None, meas: list[str] | None = None
-) -> dict[T.Hashable, T.Any]:
+) -> dict[Hashable, T.Any]:
     """
     get RINEX 3 OBS types, for each system type
     optionally, select system type and/or measurement type to greatly

@@ -24,15 +24,16 @@ def navtimeseries(nav: xarray.Dataset):
 
     svs = nav.sv.values
 
+    fig = figure()
     if cartopy is not None:
-        ax = figure().gca(projection=cartopy.crs.PlateCarree())
-
-        ax.add_feature(cpf.LAND)
-        ax.add_feature(cpf.OCEAN)
-        ax.add_feature(cpf.COASTLINE)
-        ax.add_feature(cpf.BORDERS, linestyle=":")
+        ax = fig.add_subplot(projection=cartopy.crs.PlateCarree())
+        # https://github.com/SciTools/cartopy/issues/2304
+        ax.add_feature(cpf.LAND)  # type: ignore
+        ax.add_feature(cpf.OCEAN)  # type: ignore
+        ax.add_feature(cpf.COASTLINE)  # type: ignore
+        ax.add_feature(cpf.BORDERS, linestyle=":")  # type: ignore
     else:
-        ax = figure().gca()
+        ax = fig.gca()
 
     for sv in svs:
         if sv[0] == "S":
@@ -90,15 +91,16 @@ def receiver_locations(locs: pandas.DataFrame):
     if not isinstance(locs, pandas.DataFrame):
         return
 
+    fig = figure()
     if cartopy is not None:
-        ax = figure().gca(projection=cartopy.crs.PlateCarree())
-
-        ax.add_feature(cpf.LAND)
-        ax.add_feature(cpf.OCEAN)
-        ax.add_feature(cpf.COASTLINE)
-        ax.add_feature(cpf.BORDERS, linestyle=":")
+        ax = fig.add_subplot(projection=cartopy.crs.PlateCarree())
+        # https://github.com/SciTools/cartopy/issues/2304
+        ax.add_feature(cpf.LAND)  # type: ignore
+        ax.add_feature(cpf.OCEAN)  # type: ignore
+        ax.add_feature(cpf.COASTLINE)  # type: ignore
+        ax.add_feature(cpf.BORDERS, linestyle=":")  # type: ignore
     else:
-        ax = figure().gca()
+        ax = fig.gca()
 
     for name, loc in locs.iterrows():
         if 15 <= loc.interval < 30:

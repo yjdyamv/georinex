@@ -1,5 +1,5 @@
-from __future__ import annotations
 import typing as T
+from collections.abc import Hashable
 from pathlib import Path
 from datetime import timedelta
 import numpy as np
@@ -11,7 +11,7 @@ except ImportError:
     psutil = None
 
 
-def check_unique_times(times: np.ndarray) -> bool:
+def check_unique_times(times) -> bool:
     Nuniq = np.unique(times).size
     Ntimes = times.size
 
@@ -41,7 +41,7 @@ def check_ram(memneed: int, fn: T.TextIO | Path):
         raise RuntimeError(errmsg)
 
 
-def determine_time_system(header: dict[T.Hashable, T.Any]) -> str:
+def determine_time_system(header: dict[Hashable, T.Any]) -> str:
     """Determine which time system is used in an observation file."""
     # Current implementation is quite inconsistent in terms what is put into
     # header.
