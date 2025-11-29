@@ -179,11 +179,12 @@ Read location from NetCDF4 / HDF5 file can be accomplished in a few ways:
 * using `xarray`
 
   ```python
-  obs = xarray.open_dataset('my.nc)
+  obs = xarray.open_dataset('my.nc')
 
   ecef = obs.position
   latlon = obs.position_geodetic  # only if pymap3d was used
   ```
+
 * Using `h5py`:
 
   ```python
@@ -248,7 +249,7 @@ shows that `np.genfromtxt()` is consuming about 30% of processing time, and `xar
 ## Notes
 
 * GPS satellite position is given for each time in the NAV file as Keplerian parameters, which can be [converted to ECEF](https://ascelibrary.org/doi/pdf/10.1061/9780784411506.ap03).
-* https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf
+* <https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf>
 
 ### Number of SVs visible
 
@@ -292,4 +293,4 @@ Python package.
 These are distinct from the supported `.rnx`, `.gz`, or `.zip` RINEX files.
 
 Hatanaka, Y. (2008), A Compression Format and Tools for GNSS Observation Data, Bulletin of the Geospatioal Information Authority of Japan, 55, 21-30.
-(available at http://www.gsi.go.jp/ENGLISH/Bulletin55.html)
+(available at <http://www.gsi.go.jp/ENGLISH/Bulletin55.html>)
